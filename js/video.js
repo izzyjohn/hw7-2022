@@ -11,8 +11,8 @@ window.addEventListener("load", function() {
 document.querySelector("#play").addEventListener("click", function() {
 	video.play();
 	console.log("Play Video");
-	vol = document.querySelector("#volume");
-	vol.innerHTML = document.querySelector("#slider").value;
+	document.querySelector("#volume").innerHTML = document.querySelector("#slider").value + "%";
+	console.log("Displaying Volume");
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -40,20 +40,23 @@ document.querySelector("#skip").addEventListener("click", function() {
 });
 
 document.querySelector("#mute").addEventListener("click", function() {
+	mute_button = document.querySelector("#mute");
 	if(video.muted == true) {
 		video.muted = false;
-		document.getElementById("mute").innerHTML = "Mute";
+		mute_button.innerHTML = "Mute";
+		console.log("Volume is Unmuted");
 	}
 	else if(video.muted == false) {
 		video.muted = true;
-		document.getElementById("mute").innerHTML = "Unmute";
+		mute_button.innerHTML = "Unmute";
+		console.log("Volume is Muted");
 	}
-})
+});
 
 document.querySelector("#slider").addEventListener("change", function() {
+	console.log("The current volume is " + this.value/100);
 	video.volume = (this.value / 100)
 	document.querySelector("#volume").innerHTML = this.value/1 + "%";
-	console.log("The current volume is " + this.value/100);
 });
 
 document.querySelector("#vintage").addEventListener("click", function() {
